@@ -1,0 +1,47 @@
+# profiling
+# zmodload zsh/zprof
+
+setopt histignorealldups sharehistory
+
+# Use emacs keybindings even if our EDITOR is set to vi
+# bindkey -v		# for vim keybinding, uncomment
+bindkey -e
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.cache/.zsh_history
+
+# functions
+fpath+=($ZDOTDIR/.zfuncs $fpath)
+autoload -Uz path fpath ports 
+
+# Use modern completion system
+autoload -Uz compinit && compinit -i
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)	# include hidden files
+
+# add git info
+zstyle ':vcs_info:git:*' formats '%b'
+autoload -Uz vcs_info
+precmd() { vcs_info }
+setopt PROMPT_SUBST
+
+# the prompt
+PROMPT="%F{046}➜%f %F{050}%c%f "
+RPROMPT="%F{226}\$vcs_info_msg_0_%f"
+
+# plugins
+source /home/arfe/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/arfe/.config/zsh/plugins/ranger-auto-cd/ranger_cd.sh
+#source /home/arfe/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+
+# aliases
+alias nvim="/home/arfe/Downloads/appimages/nvim.appimage"
+
+# profiling end
+# zprof

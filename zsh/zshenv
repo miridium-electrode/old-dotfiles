@@ -1,0 +1,5 @@
+# export ZDOTDIR="$HOME/.config/zsh"
+# export ZDOTDIR="$HOME/.devtools/zsh"
+# export HISTFILE="$HOME/.cache/zsh_history"
+# export HISTFILE="$HOME/.devtools/zsh/zsh_history"
+# export DEVDIR="$HOME/.devtools"
